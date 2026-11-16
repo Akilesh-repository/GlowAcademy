@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetology & Beauty School - Our Programs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontWeight: { semibold: '500', bold: '600', extrabold: '800', black: '900' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* === RESET & CORE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* === THEME VARIABLES (Beauty School Theme) === */
+        :root {
+            --bg-color: #FFFFFF;         
+            --bg-secondary: #FFF1F2;     
+            --bg-card: #FFFFFF;          
+            --text-main: #1F2937;        
+            --text-muted: #4B5563;       
+            --accent-color: #DB2777;    
+            --accent-dark: #BE185D;      
+            --border-color: #FCE7F3;     
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --drawer-bg: rgba(255, 255, 255, 0.98);
+            --menu-hover-bg: rgba(219, 39, 119, 0.08);
+        }
+
+        body.dark-mode {
+            --bg-color: #111827;         
+            --bg-secondary: #1F2937;     
+            --bg-card: #111827;
+            --text-main: #F9FAFB;        
+            --text-muted: #9CA3AF;
+            --accent-color: #F472B6;     
+            --accent-dark: #DB2777;      
+            --border-color: #374151;
+            --nav-bg: rgba(17, 24, 39, 0.9);
+            --drawer-bg: rgba(17, 24, 39, 0.98);
+            --menu-hover-bg: rgba(244, 114, 182, 0.15);
+        }
+
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+        [dir="rtl"] .dropdown-menu { left: auto; right: 0; transform-origin: top right; }
+        [dir="rtl"] .quote-icon { right: auto !important; left: 2rem !important; }
+        [dir="rtl"] .fa-arrow-right, [dir="rtl"] .fa-chevron-right { transform: scaleX(-1); display: inline-block; }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+
+        /* === NEW FULL-WIDTH SLEEK NAVBAR === */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color); height: 86px; display: flex; align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar.scrolled { 
+            height: 72px; background: var(--bg-card); box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08); 
+        }
+
+        .nav-link {
+            position: relative; padding: 8px 10px; margin: 0 4px; color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            cursor: pointer; z-index: 1; background: transparent; white-space: nowrap;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
+
+        .dropdown { position: relative; display: flex; align-items: center; height: 100%; }
+        .dropdown-menu { position: absolute; top: calc(100% + 5px); left: 0; transform: translateY(15px) scale(0.95); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 100; transform-origin: top left; }
+        .dropdown-inner { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; min-width: 220px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .dropdown-item { display: block; padding: 12px 16px; border-radius: 8px; color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 600; text-transform: capitalize; transition: all 0.2s; text-align: left; white-space: nowrap; }
+        .dropdown-item:hover { background: var(--menu-hover-bg); color: var(--accent-color); padding-left: 20px; }
+        [dir="rtl"] .dropdown-item:hover { padding-left: 16px; padding-right: 20px; }
+
+        .theme-toggle-pill {
+            width: 80px; height: 36px; background: var(--bg-secondary); border-radius: 9999px; position: relative; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 10px; border: 1.5px solid var(--border-color); margin: 0 3px; direction: ltr !important; box-sizing: border-box; flex-shrink: 0;
+        }
+        .theme-toggle-pill i { font-size: 12px; z-index: 1; }
+        .theme-toggle-pill .fa-sun { color: #f59e0b; }
+        .theme-toggle-pill .fa-moon { color: #999; }
+        .theme-toggle-pill .thumb {
+            position: absolute; top: 2px; left: 3px; width: 28px; height: 28px; background: white; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 2; border: 1px solid var(--border-color);
+        }
+        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(43px); background: #333; border-color: var(--border-color); }
+
+        .rtl-btn-style {
+            width: 80px; height: 36px; background: var(--bg-secondary); border-radius: 9999px; border: 1.5px solid var(--border-color); display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; color: var(--text-main); transition: all 0.3s ease; margin: 0 3px; box-sizing: border-box; flex-shrink: 0;
+        }
+        .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(219, 39, 119, 0.15); }
+
+        /* BUTTON DESIGNS */
+        .btn { padding: 14px 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; position: relative; border: 2px solid transparent; border-radius: 8px; text-decoration: none; }
+        
+        .btn-solid { background: linear-gradient(135deg, var(--accent-color), var(--accent-dark)); color: #FFFFFF !important; box-shadow: 0 8px 20px -6px rgba(219, 39, 119, 0.5); }
+        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 12px 25px -4px rgba(219, 39, 119, 0.6); }
+        
+        .btn-outline { background: transparent; border: 2px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color) !important; background: var(--menu-hover-bg); transform: translateY(-3px); }
+
+        /* AUTH BUTTONS */
+        .btn-auth { padding: 0; width: 85px; height: 38px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-main); background: transparent; border: 2px solid var(--text-main); border-radius: 8px; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; box-sizing: border-box; flex-shrink: 0; margin: 0 3px; }
+        body.dark-mode .btn-auth { border-color: var(--border-color); }
+        .btn-auth:hover { border-color: var(--accent-color); color: #fff; background: var(--accent-color); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3); }
+
+        /* DRAWER MENU */
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .fullscreen-menu { position: fixed; top: 0; right: 0; width: 100%; max-width: 400px; height: 100dvh; background: var(--drawer-bg); z-index: 1001; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateX(100%); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid var(--border-color); }
+        [dir="rtl"] .fullscreen-menu { right: auto; left: 0; transform: translateX(-100%); border-left: none; border-right: 1px solid var(--border-color); }
+        .fullscreen-menu.active { opacity: 1; visibility: visible; transform: translateX(0); }
+        [dir="rtl"] .fullscreen-menu.active { transform: translateX(0); }
+        .mobile-link { display: block; width: 100%; padding: 16px 32px; font-size: 1.1rem; font-weight: 600; text-transform: capitalize; letter-spacing: 0.5px; color: var(--text-main); text-decoration: none; transition: all 0.3s; border-bottom: 1px solid var(--border-color); }
+        .mobile-link:hover { color: var(--accent-color); padding-left: 40px; background: var(--menu-hover-bg); }
+        [dir="rtl"] .mobile-link:hover { padding-left: 32px; padding-right: 40px; }
+
+        /* FOOTER */
+        footer { background: var(--bg-card); border-top: 1px solid var(--border-color); padding-top: 80px; }
+        footer h4 { color: var(--text-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        footer a, footer li, footer span { color: var(--text-muted); text-decoration: none; transition: all 0.3s; font-size: 0.95rem; font-weight: 400; }
+        footer a:hover { color: var(--accent-color); }
+        .social-link-circle { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: var(--text-main); background: transparent; }
+        .social-link-circle:hover { background: var(--accent-color); border-color: var(--accent-color); color: #FFFFFF; transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding: 32px 0; margin-top: 60px; }
+
+        /* === UNIQUE SERVICE CARD DESIGN === */
+        .service-card {
+            background: var(--bg-card); border-radius: 20px; overflow: hidden; position: relative; border: 1px solid var(--border-color); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px -15px rgba(219, 39, 119, 0.15); border-color: var(--accent-color); }
+        
+        .service-card-img-wrap { width: 100%; height: 220px; overflow: hidden; position: relative; flex-shrink: 0; }
+        .service-card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .service-card:hover .service-card-img-wrap img { transform: scale(1.1); }
+        .service-card-img-wrap::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%); opacity: 0.7; }
+        
+        .service-card-icon {
+            position: absolute; bottom: -20px; right: 24px; width: 48px; height: 48px; background: var(--accent-color); color: white; border-radius: 12px;
+            display: flex; items-center; justify-content: center; font-size: 1.2rem; z-index: 10; box-shadow: 0 4px 10px rgba(219, 39, 119, 0.4); transform: rotate(-5deg); transition: all 0.3s;
+        }
+        .service-card:hover .service-card-icon { transform: rotate(0deg) scale(1.1); }
+        
+        .service-card-content { padding: 32px 24px 24px; display: flex; flex-direction: column; flex-grow: 1; }
+        .service-card-title { font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 12px; line-height: 1.3; }
+        .service-card-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; flex-grow: 1; font-weight: 500; }
+        
+        .service-card-btn-wrap { margin-top: auto; padding-top: 16px; border-top: 1px dashed var(--border-color); }
+        .service-card-btn {
+            display: inline-flex; align-items: center; justify-content: space-between; width: 100%; padding: 12px 0; color: var(--accent-color); font-weight: 700;
+            font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; transition: all 0.3s;
+        }
+        .service-card-btn i { transition: transform 0.3s; }
+        .service-card-btn:hover { color: var(--accent-dark); }
+        .service-card:hover .service-card-btn i { transform: translateX(5px); }
+    </style>
+</head>
+<body>
+
+    <!-- === NEW SLEEK FULL-WIDTH NAVBAR (Overflow Fixed with lg: breakpoint) === -->
+    <nav class="navbar px-4 lg:px-8" id="main-nav">
+        <div class="max-w-[1440px] mx-auto w-full flex items-center justify-between">
+            <div class="flex items-center flex-shrink-0 mr-4 lg:mr-8">
+                <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
+                </a>
+            </div>
+            
+            <div class="hidden lg:flex justify-center items-center flex-1">
+                <div class="dropdown">
+                    <div class="nav-link">Home <i class="fas fa-chevron-down text-[10px] ml-1 opacity-50"></i></div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="index.html" class="dropdown-item">Home Page 1</a>
+                            <a href="home-2.html" class="dropdown-item">Home Page 2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link active">Programs</a>
+                <a href="pricing.html" class="nav-link">Tuition</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="dropdown">
+                    <div class="nav-link">Dashboard <i class="fas fa-chevron-down text-[10px] ml-1 opacity-50"></i></div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="user.html" class="dropdown-item">Student Portal</a>
+                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center flex-shrink-0 ml-2 gap-2">
+                <div id="theme-toggle-desktop" class="theme-toggle-pill" title="Toggle Dark Mode">
+                    <i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="thumb"></div>
+                </div>
+                <button id="rtl-btn" class="rtl-btn-style hidden xl:flex" title="Toggle LTR/RTL">LTR</button>
+                <div class="w-px h-8 bg-[var(--border-color)] mx-1 lg:mx-2"></div>
+                <a href="login.html" class="btn-auth">Login</a>
+                <a href="register.html" class="btn-auth">Register</a>
+            </div>
+            
+            <div class="lg:hidden flex items-center justify-end gap-4">
+                <button id="mobile-btn" class="text-2xl text-[var(--text-main)] transition-colors hover:text-[var(--accent-color)]">
+                    <i class="fas fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HAMBURGER MENU DRAWER === -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="fullscreen-menu" id="fullscreen-menu">
+        <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
+                <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
+            </a>
+            <button id="close-menu" class="w-10 h-10 rounded-full flex items-center justify-center transition-all text-xl text-[var(--text-main)] hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-color)]"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="flex flex-col w-full overflow-y-auto flex-1 py-4">
+            <a href="index.html" class="mobile-link">Home Page 1</a>
+            <a href="home-2.html" class="mobile-link">Home Page 2</a>
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="services.html" class="mobile-link" style="color: var(--accent-color);">Programs</a>
+            <a href="pricing.html" class="mobile-link">Tuition</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="faq.html" class="mobile-link">FAQ</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
+            <div class="px-8 mt-6 mb-2"><span class="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-widest">Portals</span></div>
+            <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">Student Portal</a>
+            <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
+        </div>
+        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
+                    <div id="theme-toggle-mobile" class="theme-toggle-pill"><i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="thumb"></div></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Dir</span>
+                    <button id="rtl-toggle-mobile" class="rtl-btn-style">LTR</button>
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <a href="login.html" class="btn-auth flex-1 !h-[48px] !m-0 !rounded-lg">Login</a>
+                <a href="register.html" class="btn-auth flex-1 !h-[48px] !m-0 !rounded-lg">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- === FULL VIEWPORT HERO BANNER === -->
+    <section class="relative w-full h-[100dvh] flex items-center justify-center bg-black overflow-hidden pt-[86px]">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=1920&q=80" alt="Cosmetology Programs" class="w-full h-full object-cover opacity-50">
+            <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-black/40 to-transparent"></div>
+        </div>
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center">
+            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[var(--accent-color)] text-white text-3xl mb-8 shadow-2xl animate-float"><i class="fas fa-book-open"></i></div>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-xl leading-tight">Master Your Craft. <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Choose Your Path.</span></h1>
+            <p class="text-lg md:text-xl text-gray-200 font-medium max-w-2xl mx-auto drop-shadow-md">Explore our comprehensive, state-approved programs designed to turn your passion for beauty into a lucrative, lifelong career.</p>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce text-white/50"><i class="fas fa-chevron-down text-2xl"></i></div>
+    </section>
+
+    <!-- SECTION 1: UNIQUE SERVICE CARDS GRID -->
+    <section class="relative w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+        <div class="max-w-[1440px] mx-auto px-6 w-full">
+            <div class="text-center mb-16">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Our Curriculum</span>
+                <h2 class="text-3xl lg:text-5xl font-black text-[var(--text-main)] tracking-tight">Academic Programs</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80" alt="Cosmetology">
+                        <div class="service-card-icon"><i class="fas fa-cut"></i></div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Master Cosmetology</h3>
+                        <p class="service-card-desc">1,500-hour comprehensive program covering advanced cutting, chemical texture, color theory, and salon management.</p>
+                        <div class="service-card-btn-wrap">
+                            <a href="services-details.html" class="service-card-btn">Enquire Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80" alt="Esthetics">
+                        <div class="service-card-icon" style="background: #8b5cf6;"><i class="fas fa-magic"></i></div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Advanced Esthetics</h3>
+                        <p class="service-card-desc">600-hour program focused on skin analysis, customized facials, microdermabrasion, and professional makeup application.</p>
+                        <div class="service-card-btn-wrap">
+                            <a href="services-details.html" class="service-card-btn" style="color: #8b5cf6;">Enquire Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=600&q=80" alt="Nail Technology">
+                        <div class="service-card-icon" style="background: #14b8a6;"><i class="fas fa-hand-sparkles"></i></div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Nail Technology</h3>
+                        <p class="service-card-desc">400-hour specialized course detailing spa manicures, pedicures, acrylic sculpting, gel systems, and intricate nail art.</p>
+                        <div class="service-card-btn-wrap">
+                            <a href="services-details.html" class="service-card-btn" style="color: #14b8a6;">Enquire Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" alt="Barbering">
+                        <div class="service-card-icon" style="background: #f59e0b;"><i class="fas fa-ruler-combined"></i></div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Professional Barbering</h3>
+                        <p class="service-card-desc">1,200-hour program dedicated to traditional and modern men's grooming, straight razor shaves, and clipper fades.</p>
+                        <div class="service-card-btn-wrap">
+                            <a href="services-details.html" class="service-card-btn" style="color: #f59e0b;">Enquire Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" alt="Massage Therapy">
+                        <div class="service-card-icon" style="background: #3b82f6;"><i class="fas fa-spa"></i></div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Massage Therapy</h3>
+                        <p class="service-card-desc">750-hour holistic program covering anatomy, deep tissue techniques, Swedish massage, and reflexology.</p>
+                        <div class="service-card-btn-wrap">
+                            <a href="services-details.html" class="service-card-btn" style="color: #3b82f6;">Enquire Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-card-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80" alt="Instructor Training">
+                        <div class="service-card-icon" style="background: #ec4899;"><i class="fas fa-chalkboard-teacher"></i></div>
+                    </div>
+                    <div class="service-card-content">
+                        <h3 class="service-card-title">Instructor Training</h3>
+                        <p class="service-card-desc">For licensed professionals: a 500-hour program to develop teaching skills, lesson planning, and classroom management.</p>
+                        <div class="service-card-btn-wrap">
+                            <a href="services-details.html" class="service-card-btn" style="color: #ec4899;">Enquire Now <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: WHY STUDY WITH US (FEATURES) -->
+    <section class="relative w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+        <div class="max-w-[1440px] mx-auto px-6 w-full flex flex-col md:flex-row items-center gap-16">
+            <div class="w-full md:w-1/2">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">The Glow Difference</span>
+                <h2 class="text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-8 tracking-tight">Learning Beyond The Books.</h2>
+                <p class="text-[var(--text-muted)] text-base lg:text-lg mb-8 font-medium">We merge traditional textbook theory with immersive, hands-on clinical experience to ensure you are salon-ready the day you graduate.</p>
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shrink-0 border border-[var(--border-color)] shadow-sm"><i class="fas fa-store text-[var(--accent-color)]"></i></div>
+                        <div><h4 class="text-lg font-bold text-[var(--text-main)] mb-1">Student Salon Floor</h4><p class="text-sm text-[var(--text-muted)]">Practice on real clients under educator supervision.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shrink-0 border border-[var(--border-color)] shadow-sm"><i class="fas fa-laptop-code text-[var(--accent-color)]"></i></div>
+                        <div><h4 class="text-lg font-bold text-[var(--text-main)] mb-1">Modern Digital Tools</h4><p class="text-sm text-[var(--text-muted)]">Learn business management via salon software.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 rounded-full bg-white dark:bg-gray-800 flex items-center justify-center shrink-0 border border-[var(--border-color)] shadow-sm"><i class="fas fa-id-card text-[var(--accent-color)]"></i></div>
+                        <div><h4 class="text-lg font-bold text-[var(--text-main)] mb-1">Licensing Prep</h4><p class="text-sm text-[var(--text-muted)]">Dedicated state board practical mock exams.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 h-[500px] rounded-3xl overflow-hidden shadow-2xl relative">
+                <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" alt="Student Salon" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/20"></div>
+                <div class="absolute bottom-8 left-8 bg-[var(--bg-card)] p-4 rounded-xl shadow-lg border border-[var(--border-color)]">
+                    <div class="flex items-center gap-3"><div class="text-[var(--accent-color)] text-3xl"><i class="fas fa-star"></i></div><div><div class="text-xl font-black text-[var(--text-main)]">4.9/5</div><div class="text-xs text-[var(--text-muted)] uppercase tracking-widest font-bold">Student Rating</div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: UPCOMING START DATES -->
+    <section class="relative w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+        <div class="max-w-[1000px] mx-auto px-6 w-full text-center">
+            <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Enrollment</span>
+            <h2 class="text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-12 tracking-tight">Upcoming Class Starts</h2>
+            
+            <div class="bg-[var(--bg-secondary)] rounded-3xl border border-[var(--border-color)] overflow-hidden shadow-sm text-left">
+                <!-- Class 1 -->
+                <div class="p-6 md:p-8 border-b border-[var(--border-color)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[var(--menu-hover-bg)] transition-colors">
+                    <div class="flex items-center gap-6">
+                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl w-20 h-20 flex flex-col items-center justify-center shrink-0 shadow-sm">
+                            <span class="text-xs text-[var(--text-muted)] font-bold uppercase">SEP</span>
+                            <span class="text-2xl font-black text-[var(--accent-color)]">15</span>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold text-[var(--text-main)] mb-1">Fall Cohort - Cosmetology</h4>
+                            <p class="text-sm text-[var(--text-muted)] font-medium"><i class="far fa-clock mr-1"></i> Full Time (Days) &bull; <span class="text-rose-500 font-bold ml-1">3 Spots Left</span></p>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline !py-3 w-full md:w-auto text-center shrink-0">Apply Now</a>
+                </div>
+                
+                <!-- Class 2 -->
+                <div class="p-6 md:p-8 border-b border-[var(--border-color)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[var(--menu-hover-bg)] transition-colors">
+                    <div class="flex items-center gap-6">
+                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl w-20 h-20 flex flex-col items-center justify-center shrink-0 shadow-sm">
+                            <span class="text-xs text-[var(--text-muted)] font-bold uppercase">OCT</span>
+                            <span class="text-2xl font-black text-[var(--accent-color)]">02</span>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold text-[var(--text-main)] mb-1">Fall Cohort - Esthetics</h4>
+                            <p class="text-sm text-[var(--text-muted)] font-medium"><i class="far fa-clock mr-1"></i> Part Time (Evenings) &bull; <span class="text-green-500 font-bold ml-1">Open</span></p>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline !py-3 w-full md:w-auto text-center shrink-0">Apply Now</a>
+                </div>
+                
+                <!-- Class 3 -->
+                <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[var(--menu-hover-bg)] transition-colors">
+                    <div class="flex items-center gap-6">
+                        <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl w-20 h-20 flex flex-col items-center justify-center shrink-0 shadow-sm">
+                            <span class="text-xs text-[var(--text-muted)] font-bold uppercase">NOV</span>
+                            <span class="text-2xl font-black text-[var(--accent-color)]">10</span>
+                        </div>
+                        <div>
+                            <h4 class="text-lg md:text-xl font-bold text-[var(--text-main)] mb-1">Winter Cohort - Nail Tech</h4>
+                            <p class="text-sm text-[var(--text-muted)] font-medium"><i class="far fa-clock mr-1"></i> Full Time (Days) &bull; <span class="text-green-500 font-bold ml-1">Open</span></p>
+                        </div>
+                    </div>
+                    <a href="contact.html" class="btn btn-outline !py-3 w-full md:w-auto text-center shrink-0">Apply Now</a>
+                </div>
+            </div>
+            <p class="mt-8 text-sm text-[var(--text-muted)]">Looking for financial aid options? <a href="pricing.html" class="text-[var(--accent-color)] font-bold hover:underline">View Tuition Details</a></p>
+        </div>
+    </section>
+
+    <!-- SECTION 4: CALL TO ACTION -->
+    <section class="relative w-full py-24 bg-[var(--accent-color)]">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+        <div class="max-w-[800px] mx-auto px-6 w-full text-center relative z-10 text-white">
+            <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tight shadow-sm">Ready to Start Your Journey?</h2>
+            <p class="text-lg text-pink-100 mb-10 font-medium">Book a personalized campus tour today. Meet our educators, see our clinic floor in action, and get all your questions answered.</p>
+            <a href="contact.html" class="btn bg-white !text-[var(--accent-color)] hover:bg-gray-100 !py-4 !px-10 text-base shadow-xl inline-flex"><i class="fas fa-calendar-check mr-2"></i> Book A Campus Tour</a>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="relative z-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
+                <div class="lg:col-span-4">
+                    <div class="mb-6">
+                        <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
+                            <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
+                        </a>
+                    </div>
+                    <p class="opacity-80 leading-relaxed text-sm font-medium mb-8 max-w-sm" style="color: var(--text-muted);">
+                        Your premier destination for comprehensive cosmetology, esthetics, and wellness education. Empowering the next generation of beauty professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-link-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="lg:col-span-8">
+                    <!-- EXACT FILE REDIRECTS USED FOR FOOTER WITH BEAUTY SCHOOL LABELS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                        <div>
+                            <h4>Quick Links</h4>
+                            <ul class="space-y-4">
+                                <li><a href="login.html">Student Login</a></li>
+                                <li><a href="user.html">Student Dashboard</a></li>
+                                <li><a href="pricing.html">Tuition & Financing</a></li>
+                                <li><a href="blog.html">Academy Blog</a></li>
+                                <li><a href="faq.html">Admissions FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Our Programs</h4>
+                            <ul class="space-y-4">
+                                <li><a href="services.html">Cosmetology Program</a></li>
+                                <li><a href="services.html">Esthetics & Skincare</a></li>
+                                <li><a href="services.html">Nail Technology</a></li>
+                                <li><a href="services.html">Hair Design & Styling</a></li>
+                                <li><a href="services.html">Masterclasses</a></li>
+                            </ul>
+                        </div>
+                        <div class="sm:col-span-2 md:col-span-1">
+                            <h4>Location</h4>
+                            <ul class="space-y-4 text-[var(--text-muted)] text-sm font-medium">
+                                <li class="flex items-start gap-4"><i class="fas fa-map-marker-alt mt-1 shrink-0" style="color: var(--accent-color);"></i><span>450 Glamour Ave<br>Style City, NY 10001</span></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-phone shrink-0" style="color: var(--accent-color);"></i><a href="tel:+1555800GLOW" class="break-all hover:text-[var(--accent-color)]">+1 (555) 800-GLOW</a></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-envelope shrink-0" style="color: var(--accent-color);"></i><a href="contact.html" class="break-all hover:text-[var(--accent-color)]">admissions@glowacademy.edu</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom flex flex-col md:flex-row justify-between items-center text-xs gap-6 font-semibold uppercase tracking-widest">
+                <p style="color: var(--text-muted);">&copy; 2026 Glow Academy of Beauty. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+                    <a href="#">Terms of Service</a><a href="#">Student Guidelines</a><a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- === JAVASCRIPT CORE === -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 20) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+        });
+
+        const mobileBtn = document.getElementById('mobile-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function toggleMenu() {
+            fullscreenMenu.classList.toggle('active');
+            drawerOverlay.classList.toggle('active');
+            document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        mobileBtn.onclick = toggleMenu; closeMenu.onclick = toggleMenu; drawerOverlay.onclick = toggleMenu;
+
+        const themeDesktop = document.getElementById('theme-toggle-desktop');
+        const themeMobile = document.getElementById('theme-toggle-mobile');
+        const theme = localStorage.getItem('theme') || 'light';
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                if (themeMobile) themeMobile.classList.add('active');
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (themeMobile) themeMobile.classList.remove('active');
+            }
+        }
+        updateThemeUI(theme === 'dark');
+
+        function toggleTheme() {
+            const isDark = !document.body.classList.contains('dark-mode');
+            updateThemeUI(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        themeDesktop.onclick = toggleTheme;
+        if (themeMobile) themeMobile.onclick = toggleTheme;
+
+        const rtlBtn = document.getElementById('rtl-btn');
+        const rtlMobile = document.getElementById('rtl-toggle-mobile');
+        const dir = localStorage.getItem('dir') || 'ltr';
+
+        function updateRTLUI(currentDir) {
+            const isRTL = currentDir === 'rtl';
+            if (rtlBtn) rtlBtn.innerText = isRTL ? 'RTL' : 'LTR';
+            if (rtlMobile) rtlMobile.innerText = isRTL ? 'RTL' : 'LTR';
+        }
+        if (dir === 'rtl') { document.documentElement.dir = 'rtl'; }
+        updateRTLUI(dir);
+
+        function toggleRTL() {
+            const isRTL = document.documentElement.dir === 'rtl';
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            localStorage.setItem('dir', newDir);
+            updateRTLUI(newDir);
+        }
+        if (rtlBtn) rtlBtn.onclick = toggleRTL;
+        if (rtlMobile) rtlMobile.onclick = toggleRTL;
+    </script>
+</body>
+</html>

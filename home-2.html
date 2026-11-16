@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmetology & Beauty School - Modern Academy (Home 2)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✨</text></svg>">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontWeight: { semibold: '500', bold: '600', extrabold: '800', black: '900' }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* === RESET & CORE === */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* === THEME VARIABLES (Beauty School Theme) === */
+        :root {
+            --bg-color: #FFFFFF;         
+            --bg-secondary: #FFF1F2;     
+            --bg-card: #FFFFFF;          
+            --text-main: #1F2937;        
+            --text-muted: #4B5563;       
+            --accent-color: #DB2777;    
+            --accent-dark: #BE185D;      
+            --border-color: #FCE7F3;     
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --drawer-bg: rgba(255, 255, 255, 0.98);
+            --menu-hover-bg: rgba(219, 39, 119, 0.08);
+        }
+
+        body.dark-mode {
+            --bg-color: #111827;         
+            --bg-secondary: #1F2937;     
+            --bg-card: #111827;
+            --text-main: #F9FAFB;        
+            --text-muted: #9CA3AF;
+            --accent-color: #F472B6;     
+            --accent-dark: #DB2777;      
+            --border-color: #374151;
+            --nav-bg: rgba(17, 24, 39, 0.9);
+            --drawer-bg: rgba(17, 24, 39, 0.98);
+            --menu-hover-bg: rgba(244, 114, 182, 0.15);
+        }
+
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+        [dir="rtl"] .dropdown-menu { left: auto; right: 0; transform-origin: top right; }
+        [dir="rtl"] .quote-icon { right: auto !important; left: 2rem !important; }
+        [dir="rtl"] .fa-arrow-right, [dir="rtl"] .fa-chevron-right { transform: scaleX(-1); display: inline-block; }
+
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        .animate-float { animation: float 5s ease-in-out infinite; }
+
+        /* === NEW FULL-WIDTH SLEEK NAVBAR === */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color); height: 86px; display: flex; align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .navbar.scrolled { 
+            height: 72px; background: var(--bg-card); box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.08); 
+        }
+
+        .nav-link {
+            position: relative; padding: 8px 10px; margin: 0 4px; color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            cursor: pointer; z-index: 1; background: transparent; white-space: nowrap;
+        }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--accent-color); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
+
+        .dropdown { position: relative; display: flex; align-items: center; height: 100%; }
+        .dropdown-menu { position: absolute; top: calc(100% + 5px); left: 0; transform: translateY(15px) scale(0.95); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 100; transform-origin: top left; }
+        .dropdown-inner { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; min-width: 220px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1); padding: 8px; display: flex; flex-direction: column; gap: 4px; }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        .dropdown-item { display: block; padding: 12px 16px; border-radius: 8px; color: var(--text-main); text-decoration: none; font-size: 13px; font-weight: 600; text-transform: capitalize; transition: all 0.2s; text-align: left; white-space: nowrap; }
+        .dropdown-item:hover { background: var(--menu-hover-bg); color: var(--accent-color); padding-left: 20px; }
+        [dir="rtl"] .dropdown-item:hover { padding-left: 16px; padding-right: 20px; }
+
+        .theme-toggle-pill {
+            width: 80px; height: 36px; background: var(--bg-secondary); border-radius: 9999px; position: relative; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 10px; border: 1.5px solid var(--border-color); margin: 0 3px; direction: ltr !important; box-sizing: border-box; flex-shrink: 0;
+        }
+        .theme-toggle-pill i { font-size: 12px; z-index: 1; }
+        .theme-toggle-pill .fa-sun { color: #f59e0b; }
+        .theme-toggle-pill .fa-moon { color: #999; }
+        .theme-toggle-pill .thumb {
+            position: absolute; top: 2px; left: 3px; width: 28px; height: 28px; background: white; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 2; border: 1px solid var(--border-color);
+        }
+        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(43px); background: #333; border-color: var(--border-color); }
+
+        .rtl-btn-style {
+            width: 80px; height: 36px; background: var(--bg-secondary); border-radius: 9999px; border: 1.5px solid var(--border-color); display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; color: var(--text-main); transition: all 0.3s ease; margin: 0 3px; box-sizing: border-box; flex-shrink: 0;
+        }
+        .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(219, 39, 119, 0.15); }
+
+        /* BUTTON DESIGNS */
+        .btn { padding: 14px 32px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; position: relative; border: 2px solid transparent; border-radius: 8px; text-decoration: none; }
+        
+        .btn-solid { background: linear-gradient(135deg, var(--accent-color), var(--accent-dark)); color: #FFFFFF !important; box-shadow: 0 8px 20px -6px rgba(219, 39, 119, 0.5); }
+        .btn-solid:hover { transform: translateY(-3px); box-shadow: 0 12px 25px -4px rgba(219, 39, 119, 0.6); }
+        
+        .btn-outline { background: transparent; border: 2px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color) !important; background: var(--menu-hover-bg); transform: translateY(-3px); }
+
+        /* AUTH BUTTONS */
+        .btn-auth { padding: 0; width: 85px; height: 38px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-main); background: transparent; border: 2px solid var(--text-main); border-radius: 8px; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; text-decoration: none; box-sizing: border-box; flex-shrink: 0; margin: 0 3px; }
+        body.dark-mode .btn-auth { border-color: var(--border-color); }
+        .btn-auth:hover { border-color: var(--accent-color); color: #fff; background: var(--accent-color); transform: translateY(-2px); box-shadow: 0 4px 15px rgba(219, 39, 119, 0.3); }
+
+        /* DRAWER MENU */
+        .drawer-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(4px); }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .fullscreen-menu { position: fixed; top: 0; right: 0; width: 100%; max-width: 400px; height: 100dvh; background: var(--drawer-bg); z-index: 1001; display: flex; flex-direction: column; opacity: 0; visibility: hidden; transform: translateX(100%); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid var(--border-color); }
+        [dir="rtl"] .fullscreen-menu { right: auto; left: 0; transform: translateX(-100%); border-left: none; border-right: 1px solid var(--border-color); }
+        .fullscreen-menu.active { opacity: 1; visibility: visible; transform: translateX(0); }
+        [dir="rtl"] .fullscreen-menu.active { transform: translateX(0); }
+        .mobile-link { display: block; width: 100%; padding: 16px 32px; font-size: 1.1rem; font-weight: 600; text-transform: capitalize; letter-spacing: 0.5px; color: var(--text-main); text-decoration: none; transition: all 0.3s; border-bottom: 1px solid var(--border-color); }
+        .mobile-link:hover { color: var(--accent-color); padding-left: 40px; background: var(--menu-hover-bg); }
+        [dir="rtl"] .mobile-link:hover { padding-left: 32px; padding-right: 40px; }
+
+        /* FOOTER */
+        footer { background: var(--bg-card); border-top: 1px solid var(--border-color); padding-top: 80px; }
+        footer h4 { color: var(--text-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        footer a, footer li, footer span { color: var(--text-muted); text-decoration: none; transition: all 0.3s; font-size: 0.95rem; font-weight: 400; }
+        footer a:hover { color: var(--accent-color); }
+        .social-link-circle { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: var(--text-main); background: transparent; }
+        .social-link-circle:hover { background: var(--accent-color); border-color: var(--accent-color); color: #FFFFFF; transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding: 32px 0; margin-top: 60px; }
+
+        /* CONTACT FORM OVERRIDES */
+        .contact-input {
+            width: 100%; padding: 16px 24px; border-radius: 12px; background: var(--bg-secondary); border: 1px solid var(--border-color);
+            color: var(--text-main); font-size: 0.95rem; transition: all 0.3s;
+        }
+        .contact-input:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 4px rgba(219, 39, 119, 0.1); }
+        .contact-input::placeholder { color: var(--text-muted); opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <!-- === NEW SLEEK FULL-WIDTH NAVBAR (Overflow Fixed with lg: breakpoint) === -->
+    <nav class="navbar px-4 lg:px-8" id="main-nav">
+        <div class="max-w-[1440px] mx-auto w-full flex items-center justify-between">
+            <div class="flex items-center flex-shrink-0 mr-4 lg:mr-8">
+                <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
+                </a>
+            </div>
+            
+            <div class="hidden lg:flex justify-center items-center flex-1">
+                <div class="dropdown">
+                    <div class="nav-link active">Home <i class="fas fa-chevron-down text-[10px] ml-1 opacity-50"></i></div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="index.html" class="dropdown-item">Home Page 1</a>
+                            <a href="home-2.html" class="dropdown-item">Home Page 2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link">Programs</a>
+                <a href="pricing.html" class="nav-link">Tuition</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="dropdown">
+                    <div class="nav-link">Dashboard <i class="fas fa-chevron-down text-[10px] ml-1 opacity-50"></i></div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="user.html" class="dropdown-item">Student Portal</a>
+                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center flex-shrink-0 ml-2 gap-2">
+                <div id="theme-toggle-desktop" class="theme-toggle-pill" title="Toggle Dark Mode">
+                    <i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="thumb"></div>
+                </div>
+                <button id="rtl-btn" class="rtl-btn-style hidden xl:flex" title="Toggle LTR/RTL">LTR</button>
+                <div class="w-px h-8 bg-[var(--border-color)] mx-1 lg:mx-2"></div>
+                <a href="login.html" class="btn-auth">Login</a>
+                <a href="register.html" class="btn-auth">Register</a>
+            </div>
+            
+            <div class="lg:hidden flex items-center justify-end gap-4">
+                <button id="mobile-btn" class="text-2xl text-[var(--text-main)] transition-colors hover:text-[var(--accent-color)]">
+                    <i class="fas fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- === HAMBURGER MENU DRAWER === -->
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+    <div class="fullscreen-menu" id="fullscreen-menu">
+        <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
+            <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
+                <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
+            </a>
+            <button id="close-menu" class="w-10 h-10 rounded-full flex items-center justify-center transition-all text-xl text-[var(--text-main)] hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-color)]"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="flex flex-col w-full overflow-y-auto flex-1 py-4">
+            <a href="index.html" class="mobile-link">Home Page 1</a>
+            <a href="home-2.html" class="mobile-link" style="color: var(--accent-color);">Home Page 2</a>
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="services.html" class="mobile-link">Programs</a>
+            <a href="pricing.html" class="mobile-link">Tuition</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="faq.html" class="mobile-link">FAQ</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
+            <div class="px-8 mt-6 mb-2"><span class="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-widest">Portals</span></div>
+            <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">Student Portal</a>
+            <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
+        </div>
+        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
+                    <div id="theme-toggle-mobile" class="theme-toggle-pill"><i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="thumb"></div></div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Dir</span>
+                    <button id="rtl-toggle-mobile" class="rtl-btn-style">LTR</button>
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <a href="login.html" class="btn-auth flex-1 !h-[48px] !m-0 !rounded-lg">Login</a>
+                <a href="register.html" class="btn-auth flex-1 !h-[48px] !m-0 !rounded-lg">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- === SECTION 1: EDITORIAL IMMERSIVE HERO === -->
+    <section class="relative w-full h-[100dvh] flex items-center justify-center bg-[var(--bg-color)] overflow-hidden pt-16">
+        <div class="max-w-7xl mx-auto px-6 w-full h-full flex flex-col justify-center">
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=1920&q=80" alt="Glow Academy Hero" class="w-full h-full object-cover opacity-35 filter saturate-150">
+                <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-[var(--bg-color)]/60 to-transparent"></div>
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--accent-color)_0%,_transparent_70%)] opacity-15"></div>
+            </div>
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4 text-left">
+                    <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] shadow-sm backdrop-blur-md">
+                        <span class="flex h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-[var(--accent-color)]">Admissions Open Fall 2026</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[var(--text-main)] leading-[1.1]">
+                        Where Passion Becomes <span class="bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 bg-clip-text text-transparent">Couture Art</span>
+                    </h1>
+                    <p class="text-[var(--text-muted)] text-base sm:text-lg max-w-xl font-medium leading-relaxed">
+                        Master high-precision hairdressing, clinical aesthetics, and runway editorial styling under global industry titans.
+                    </p>
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="contact.html" class="btn btn-primary px-8 py-3.5 text-sm font-black rounded-xl shadow-lg hover:shadow-pink-500/25 transition-all">Apply For Admission <i class="fas fa-arrow-right ml-2 text-xs"></i></a>
+                        <a href="services.html" class="btn btn-outline px-6 py-3.5 text-sm font-bold rounded-xl border-[var(--border-color)] hover:border-[var(--accent-color)]">Explore Programs</a>
+                    </div>
+                    <div class="pt-4 flex items-center gap-6 border-t border-[var(--border-color)]/60 text-xs text-[var(--text-muted)]">
+                        <div class="flex items-center gap-2"><i class="fas fa-certificate text-[var(--accent-color)]"></i><span>State Board Accredited</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-briefcase text-[var(--accent-color)]"></i><span>98% Placement Rate</span></div>
+                        <div class="flex items-center gap-2"><i class="fas fa-hand-holding-dollar text-[var(--accent-color)]"></i><span>Financial Aid Available</span></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 relative hidden lg:block">
+                    <div class="relative mx-auto max-w-md rounded-3xl overflow-hidden shadow-2xl border-2 border-white/20 bg-[var(--bg-card)]">
+                        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=800&q=80" alt="Student Styling in Studio" class="w-full h-[340px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                        <div class="absolute bottom-5 left-5 right-5 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-[10px] uppercase font-bold tracking-widest text-pink-300">Live Campus Spotlight</p>
+                                    <h4 class="text-sm font-black">Modern Cosmetology Lab #4</h4>
+                                </div>
+                                <span class="px-2.5 py-1 rounded-full bg-emerald-500/80 text-[10px] font-black uppercase tracking-wider">Live</span>
+                            </div>
+                            <p class="text-xs text-gray-200 mt-2 line-clamp-1">Hands-on color formulation & runway hair design workshop in session.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 text-center text-xs text-[var(--text-muted)] animate-bounce"><i class="fas fa-chevron-down"></i></div>
+        </div>
+    </section>
+
+    <!-- === SECTION 2: CURRICULUM BENTO GRID === -->
+    <section class="relative w-full h-[100dvh] flex flex-col justify-center bg-[var(--bg-secondary)] overflow-hidden py-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest block mb-1">Academic Programs</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] tracking-tight">Four Distinct Career Pathways</h2>
+                <p class="text-[var(--text-muted)] text-xs mt-1">Accelerated, hands-on diploma programs engineered for high-earning beauty leaders.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="card p-5 rounded-2xl flex flex-col justify-between group hover:border-[var(--accent-color)] transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-pink-500/10 text-pink-500 flex items-center justify-center text-lg mb-3"><i class="fas fa-cut"></i></div>
+                    <span class="text-[10px] font-black uppercase text-[var(--accent-color)]">1500 Hours</span>
+                    <h3 class="text-base font-black text-[var(--text-main)] mt-1 mb-1">Master Cosmetology</h3>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">Precision haircutting, chemical texturing, editorial coloring, and modern salon management.</p>
+                    <a href="services.html" class="pt-3 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-bold text-[var(--text-main)] hover:text-[var(--accent-color)]"><span>View Syllabus</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                </div>
+                <div class="card p-5 rounded-2xl flex flex-col justify-between group hover:border-[var(--accent-color)] transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-lg mb-3"><i class="fas fa-sparkles"></i></div>
+                    <span class="text-[10px] font-black uppercase text-rose-500">750 Hours</span>
+                    <h3 class="text-base font-black text-[var(--text-main)] mt-1 mb-1">Clinical Aesthetics</h3>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">Medical-grade facials, chemical peels, microdermabrasion, lymphatic drainage, and skin therapy.</p>
+                    <a href="services.html" class="pt-3 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-bold text-[var(--text-main)] hover:text-[var(--accent-color)]"><span>View Syllabus</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                </div>
+                <div class="card p-5 rounded-2xl flex flex-col justify-between group hover:border-[var(--accent-color)] transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex items-center justify-center text-lg mb-3"><i class="fas fa-hand-sparkles"></i></div>
+                    <span class="text-[10px] font-black uppercase text-purple-500">600 Hours</span>
+                    <h3 class="text-base font-black text-[var(--text-main)] mt-1 mb-1">Nail Technology</h3>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">Acrylic extensions, gel art architecture, Russian manicures, and high-end nail health care.</p>
+                    <a href="services.html" class="pt-3 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-bold text-[var(--text-main)] hover:text-[var(--accent-color)]"><span>View Syllabus</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                </div>
+                <div class="card p-5 rounded-2xl flex flex-col justify-between group hover:border-[var(--accent-color)] transition-all">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg mb-3"><i class="fas fa-wand-magic-sparkles"></i></div>
+                    <span class="text-[10px] font-black uppercase text-amber-500">500 Hours</span>
+                    <h3 class="text-base font-black text-[var(--text-main)] mt-1 mb-1">Editorial Makeup</h3>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">High-fashion runway contouring, special effects prosthetics, photographic lighting, and bridal glam.</p>
+                    <a href="services.html" class="pt-3 border-t border-[var(--border-color)] flex items-center justify-between text-xs font-bold text-[var(--text-main)] hover:text-[var(--accent-color)]"><span>View Syllabus</span><i class="fas fa-arrow-right text-[10px]"></i></a>
+                </div>
+            </div>
+            <div class="mt-8 p-4 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)] flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-full bg-[var(--accent-color)]/10 text-[var(--accent-color)] flex items-center justify-center"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4 class="text-xs font-black text-[var(--text-main)]">Flexible Scheduling & Financial Grants Available</h4>
+                        <p class="text-[11px] text-[var(--text-muted)]">Day, evening, and hybrid weekend cohorts designed for working students.</p>
+                    </div>
+                </div>
+                <a href="contact.html" class="btn btn-primary text-xs px-5 py-2.5 rounded-xl whitespace-nowrap">Schedule Advisor Call</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SECTION 3: IMMERSIVE MASTERCLASS STUDIO === -->
+    <section class="relative w-full h-[100dvh] flex flex-col justify-center bg-[var(--bg-color)] overflow-hidden py-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center max-w-xl mx-auto mb-4">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest block mb-1">Live Demonstrations</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] tracking-tight">World-Class Masterclasses & Workshops</h2>
+                <p class="text-[var(--text-muted)] text-xs mt-1">Learn cutting-edge couture techniques directly from celebrity stylists and platform artists.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div class="lg:col-span-7 relative rounded-3xl overflow-hidden shadow-xl border border-[var(--border-color)]">
+                    <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1200&q=80" alt="Masterclass Studio" class="w-full h-[320px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent"></div>
+                    <div class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white text-[11px] font-bold">
+                        <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> Live Masterclass Stage
+                    </div>
+                    <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-pink-300">Runway Color Session</span>
+                            <h4 class="text-sm font-black">Balayage Architecture by Paris Artists</h4>
+                        </div>
+                        <a href="services.html" class="btn btn-primary text-xs px-4 py-2 rounded-lg font-bold">Reserve Seat</a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 space-y-3">
+                    <div class="card p-3.5 rounded-2xl flex items-center justify-between hover:border-[var(--accent-color)] transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-pink-500/10 text-[var(--accent-color)] flex flex-col items-center justify-center font-black text-xs"><span>OCT</span><span class="text-sm leading-none">24</span></div>
+                            <div>
+                                <h4 class="text-xs font-black text-[var(--text-main)]">Advanced Micro-Needling & Peels</h4>
+                                <p class="text-[11px] text-[var(--text-muted)]">Guest clinical seminar with Dr. Thorne</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[var(--bg-secondary)] text-[var(--accent-color)]">Free</span>
+                    </div>
+                    <div class="card p-3.5 rounded-2xl flex items-center justify-between hover:border-[var(--accent-color)] transition-all">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-500 flex flex-col items-center justify-center font-black text-xs"><span>NOV</span><span class="text-sm leading-none">08</span></div>
+                            <div>
+                                <h4 class="text-xs font-black text-[var(--text-main)]">High-Definition Film & FX Cosmetics</h4>
+                                <p class="text-[11px] text-[var(--text-muted)]">Hands-on movie prosthetics workshop</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-[var(--bg-secondary)] text-[var(--accent-color)]">Free</span>
+                    </div>
+                    <a href="services.html" class="p-3.5 rounded-2xl bg-[var(--accent-color)]/10 border border-[var(--accent-color)]/20 flex items-center justify-between hover:bg-[var(--accent-color)]/20 transition-all">
+                        <span class="text-xs font-bold text-[var(--text-main)]">Full 2026 Masterclass Schedule</span><span class="text-xs font-bold text-[var(--accent-color)] inline-flex items-center gap-1">View Calendar <i class="fas fa-arrow-right text-[10px]"></i></span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SECTION 4: WORLD-CLASS CAMPUS ENVIRONMENT === -->
+    <section class="relative w-full h-[100dvh] flex flex-col justify-center bg-[var(--bg-secondary)] overflow-hidden py-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest block mb-1">State-Of-The-Art Facilities</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] tracking-tight">World-Class Campus Experience</h2>
+                <p class="text-[var(--text-muted)] text-xs mt-1">Train in 25,000 sq.ft. of modern salon floors, clinical labs, and multimedia photography studios.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card overflow-hidden rounded-3xl group hover:border-[var(--accent-color)] transition-all">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80" alt="Clinic Floor" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-bold text-white uppercase tracking-wider">Clinical Floor</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-base font-black text-[var(--text-main)] mb-1">Commercial Student Salon</h3>
+                        <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-3">50+ styling stations serving real paying clients daily under master educator oversight.</p>
+                        <div class="flex items-center justify-between text-xs pt-3 border-t border-[var(--border-color)] text-[var(--text-muted)]"><span>Capacity: 80 Stylists</span><a href="about.html" class="font-bold text-[var(--accent-color)]">Explore <i class="fas fa-arrow-right text-[10px]"></i></a></div>
+                    </div>
+                </div>
+                <div class="card overflow-hidden rounded-3xl group hover:border-[var(--accent-color)] transition-all">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=80" alt="Esthetics Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-bold text-white uppercase tracking-wider">Clinical Spa</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-base font-black text-[var(--text-main)] mb-1">Medical Esthetics Suite</h3>
+                        <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-3">Hydro-facial suites, LED photon therapy, micro-current machines, and sterile chemical peel lab.</p>
+                        <div class="flex items-center justify-between text-xs pt-3 border-t border-[var(--border-color)] text-[var(--text-muted)]"><span>16 Private Cabins</span><a href="about.html" class="font-bold text-[var(--accent-color)]">Explore <i class="fas fa-arrow-right text-[10px]"></i></a></div>
+                    </div>
+                </div>
+                <div class="card overflow-hidden rounded-3xl group hover:border-[var(--accent-color)] transition-all">
+                    <div class="relative h-44 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Photo Studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-bold text-white uppercase tracking-wider">Photo Stage</span>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="text-base font-black text-[var(--text-main)] mb-1">Editorial Media Studio</h3>
+                        <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-3">High-end strobe lighting, cyclorama infinity backdrops, and digital portfolio editing workstations.</p>
+                        <div class="flex items-center justify-between text-xs pt-3 border-t border-[var(--border-color)] text-[var(--text-muted)]"><span>4K Live Broadcast</span><a href="about.html" class="font-bold text-[var(--accent-color)]">Explore <i class="fas fa-arrow-right text-[10px]"></i></a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-[var(--bg-card)] border border-[var(--border-color)]">
+                <div class="flex items-center gap-2 text-xs font-bold text-[var(--text-main)]"><i class="fas fa-vr-cardboard text-[var(--accent-color)]"></i><span>Want to experience our campus from home?</span></div>
+                <a href="contact.html" class="btn btn-outline text-xs px-4 py-2 rounded-xl border-[var(--border-color)] hover:border-[var(--accent-color)] font-bold">Book a Personalized In-Person or Virtual Tour <i class="fas fa-arrow-right ml-1"></i></a>
+            </div>
+            <div class="text-center mt-2 text-[10px] text-[var(--text-muted)]"><span>Open for scheduled prospective student walkthroughs Monday through Saturday</span></div>
+        </div>
+    </section>
+
+    <!-- === SECTION 5: ELITE FACULTY MENTORS === -->
+    <section class="relative w-full h-[100dvh] flex flex-col justify-center bg-[var(--bg-color)] overflow-hidden py-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest block mb-1">World-Class Mentors</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] tracking-tight">Learn Directly from Master Stylists</h2>
+                <p class="text-[var(--text-muted)] text-xs mt-1">Our faculty are active industry icons, editorial directors, and salon owners.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="card p-5 rounded-3xl text-center group hover:border-[var(--accent-color)] transition-all">
+                    <div class="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-[var(--accent-color)]/30 group-hover:scale-105 transition-transform">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Elena Rodriguez" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-base font-black text-[var(--text-main)]">Elena Rodriguez</h3>
+                    <p class="text-[11px] font-bold text-[var(--accent-color)] uppercase tracking-wider mb-2">Artistic Hair Director</p>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">15+ years editorial stylist for Paris Fashion Week and international beauty campaigns.</p>
+                    <div class="pt-3 border-t border-[var(--border-color)] flex items-center justify-center gap-3 text-xs text-[var(--text-muted)]">
+                        <a href="about.html" class="font-bold text-[var(--accent-color)] hover:underline">View Portfolio & Bio <i class="fas fa-arrow-right text-[10px]"></i></a>
+                    </div>
+                </div>
+                <div class="card p-5 rounded-3xl text-center group hover:border-[var(--accent-color)] transition-all">
+                    <div class="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-[var(--accent-color)]/30 group-hover:scale-105 transition-transform">
+                        <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=400&q=80" alt="Marcus Chen" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-base font-black text-[var(--text-main)]">Marcus Chen</h3>
+                    <p class="text-[11px] font-bold text-rose-500 uppercase tracking-wider mb-2">Director of Esthetics</p>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">Board-certified clinical esthetician and pioneer in non-invasive dermaceutical treatments.</p>
+                    <div class="pt-3 border-t border-[var(--border-color)] flex items-center justify-center gap-3 text-xs text-[var(--text-muted)]">
+                        <a href="about.html" class="font-bold text-[var(--accent-color)] hover:underline">View Portfolio & Bio <i class="fas fa-arrow-right text-[10px]"></i></a>
+                    </div>
+                </div>
+                <div class="card p-5 rounded-3xl text-center group hover:border-[var(--accent-color)] transition-all">
+                    <div class="relative w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-[var(--accent-color)]/30 group-hover:scale-105 transition-transform">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Sarah Jenkins" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-base font-black text-[var(--text-main)]">Sarah Jenkins</h3>
+                    <p class="text-[11px] font-bold text-purple-500 uppercase tracking-wider mb-2">Master Nail Technologist</p>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed mb-4">Celebrity manicurist with features in Harper's Bazaar and international nail art championships.</p>
+                    <div class="pt-3 border-t border-[var(--border-color)] flex items-center justify-center gap-3 text-xs text-[var(--text-muted)]">
+                        <a href="about.html" class="font-bold text-[var(--accent-color)] hover:underline">View Portfolio & Bio <i class="fas fa-arrow-right text-[10px]"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-[var(--text-muted)]">
+                <span class="flex items-center gap-2"><i class="fas fa-award text-[var(--accent-color)]"></i> 100% Licensed Master Instructors</span>
+                <span class="flex items-center gap-2"><i class="fas fa-users text-[var(--accent-color)]"></i> 1:12 Intimate Student-to-Faculty Ratio</span>
+                <span class="flex items-center gap-2"><i class="fas fa-comments text-[var(--accent-color)]"></i> Weekly 1-on-1 Career Mentorship</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SECTION 6: CAREER ROI & GRADUATE SUCCESS === -->
+    <section class="relative w-full h-[100dvh] flex flex-col justify-center bg-[var(--bg-secondary)] overflow-hidden py-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest block mb-1">Graduate Success</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] tracking-tight">Proven Career ROI & Rapid Placement</h2>
+                <p class="text-[var(--text-muted)] text-xs mt-1">Our graduates lead top metropolitan salons, luxury medspas, and film production studios.</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div class="card p-4 rounded-2xl text-center border border-[var(--border-color)]">
+                    <div class="text-2xl lg:text-3xl font-black text-[var(--accent-color)] mb-1">98.4%</div>
+                    <div class="text-xs font-bold text-[var(--text-main)]">Licensing Pass Rate</div>
+                </div>
+                <div class="card p-4 rounded-2xl text-center border border-[var(--border-color)]">
+                    <div class="text-2xl lg:text-3xl font-black text-rose-500 mb-1">$62.5k</div>
+                    <div class="text-xs font-bold text-[var(--text-main)]">Average Starting Income</div>
+                </div>
+                <div class="card p-4 rounded-2xl text-center border border-[var(--border-color)]">
+                    <div class="text-2xl lg:text-3xl font-black text-purple-500 mb-1">30 Days</div>
+                    <div class="text-xs font-bold text-[var(--text-main)]">Median Job Placement</div>
+                </div>
+                <div class="card p-4 rounded-2xl text-center border border-[var(--border-color)]">
+                    <div class="text-2xl lg:text-3xl font-black text-amber-500 mb-1">350+</div>
+                    <div class="text-xs font-bold text-[var(--text-main)]">Partner Salon Network</div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card p-5 rounded-3xl relative">
+                    <div class="flex items-center gap-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=200&q=80" alt="Alumni Jessica" class="w-12 h-12 rounded-full object-cover border-2 border-[var(--accent-color)]">
+                        <div><h4 class="text-sm font-black text-[var(--text-main)]">Jessica Miller</h4><p class="text-[11px] text-[var(--accent-color)] font-bold">Class of 2024 - Studio Owner, Beverly Hills</p></div>
+                    </div>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed italic mb-3">"Glow Academy gave me the technical confidence and real client management skills to launch my private salon suite just 6 months after graduation."</p>
+                    <div class="flex items-center gap-1 text-amber-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+                <div class="card p-5 rounded-3xl relative">
+                    <div class="flex items-center gap-3 mb-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" alt="Alumni David" class="w-12 h-12 rounded-full object-cover border-2 border-rose-500">
+                        <div><h4 class="text-sm font-black text-[var(--text-main)]">David Vance</h4><p class="text-[11px] text-rose-500 font-bold">Class of 2023 - Lead Medical Esthetician</p></div>
+                    </div>
+                    <p class="text-xs text-[var(--text-muted)] leading-relaxed italic mb-3">"The clinical esthetics training and modern laser equipment prepared me for high-ticket medspa operations. My career accelerated tenfold."</p>
+                    <div class="flex items-center gap-1 text-amber-400 text-xs"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+            </div>
+            <div class="mt-5 flex items-center justify-center gap-4">
+                <a href="about.html" class="btn btn-outline text-xs px-6 py-2.5 rounded-xl border-[var(--border-color)] hover:border-[var(--accent-color)] font-bold">Explore More Alumni Stories & Statistics <i class="fas fa-arrow-right ml-1"></i></a>
+                <a href="contact.html" class="btn btn-primary text-xs px-6 py-2.5 rounded-xl font-bold">Connect With Career Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- === SECTION 7: VIP ENROLLMENT & CAMPUS TOUR === -->
+    <section class="relative w-full h-[100dvh] flex flex-col justify-center bg-[var(--bg-color)] overflow-hidden py-4">
+        <div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center">
+            <div class="text-center max-w-xl mx-auto mb-5">
+                <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest block mb-1">Start Your Journey</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] tracking-tight">Book Your VIP Campus Experience</h2>
+                <p class="text-[var(--text-muted)] text-xs mt-1">Tour our clinic salons, meet program directors, and map out your tuition and financial aid package.</p>
+            </div>
+            <div class="max-w-3xl mx-auto w-full card p-6 md:p-8 rounded-3xl border border-[var(--border-color)] shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-40 h-40 bg-[var(--accent-color)]/10 rounded-full blur-3xl pointer-events-none"></div>
+                <form action="contact.html" method="GET" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-main)] mb-1">Full Name</label>
+                            <input type="text" placeholder="e.g. Maya Lin" required class="w-full px-4 py-2.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-main)] mb-1">Email Address</label>
+                            <input type="email" placeholder="maya@example.com" required class="w-full px-4 py-2.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)]">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-main)] mb-1">Program of Interest</label>
+                            <select class="w-full px-4 py-2.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)]">
+                                <option>Master Cosmetology (1500 hrs)</option>
+                                <option>Clinical Aesthetics (750 hrs)</option>
+                                <option>Nail Artistry & Design (600 hrs)</option>
+                                <option>Editorial Makeup Art (500 hrs)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-[var(--text-main)] mb-1">Preferred Tour Date</label>
+                            <input type="date" required class="w-full px-4 py-2.5 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-xs text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)]">
+                        </div>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="btn btn-primary w-full py-3.5 text-xs font-black rounded-xl shadow-lg hover:shadow-pink-500/25 transition-all uppercase tracking-wider">Confirm VIP Campus Tour Reservation <i class="fas fa-check-circle ml-2"></i></button>
+                    </div>
+                </form>
+                <div class="mt-4 pt-4 border-t border-[var(--border-color)] flex flex-wrap items-center justify-between text-[11px] text-[var(--text-muted)] gap-2">
+                    <span><i class="fas fa-shield-halved text-[var(--accent-color)] mr-1"></i> No obligation & free kit sample included</span>
+                    <a href="tel:+15551234567" class="font-bold text-[var(--accent-color)] hover:underline"><i class="fas fa-phone mr-1"></i> Admissions Desk: (555) 123-4567</a>
+                </div>
+            </div>
+            <div class="mt-4 text-center text-xs text-[var(--text-muted)]">
+                <span>Prefer to apply directly online? <a href="contact.html" class="font-bold text-[var(--accent-color)] hover:underline">Complete Online Application Form</a></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- === FOOTER === -->
+    <footer class="relative z-20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
+                <div class="lg:col-span-4">
+                    <div class="mb-6">
+                        <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
+                            <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
+                        </a>
+                    </div>
+                    <p class="opacity-80 leading-relaxed text-sm font-medium mb-8 max-w-sm" style="color: var(--text-muted);">
+                        Your premier destination for comprehensive cosmetology, esthetics, and wellness education. Empowering the next generation of beauty professionals.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-link-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="lg:col-span-8">
+                    <!-- EXACT FILE REDIRECTS USED FOR FOOTER WITH BEAUTY SCHOOL LABELS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                        <div>
+                            <h4>Quick Links</h4>
+                            <ul class="space-y-4">
+                                <li><a href="login.html">Student Login</a></li>
+                                <li><a href="user.html">Student Dashboard</a></li>
+                                <li><a href="pricing.html">Tuition & Financing</a></li>
+                                <li><a href="blog.html">Academy Blog</a></li>
+                                <li><a href="faq.html">Admissions FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Our Programs</h4>
+                            <ul class="space-y-4">
+                                <li><a href="services.html">Cosmetology Program</a></li>
+                                <li><a href="services.html">Esthetics & Skincare</a></li>
+                                <li><a href="services.html">Nail Technology</a></li>
+                                <li><a href="services.html">Hair Design & Styling</a></li>
+                                <li><a href="services.html">Masterclasses</a></li>
+                            </ul>
+                        </div>
+                        <div class="sm:col-span-2 md:col-span-1">
+                            <h4>Location</h4>
+                            <ul class="space-y-4 text-[var(--text-muted)] text-sm font-medium">
+                                <li class="flex items-start gap-4"><i class="fas fa-map-marker-alt mt-1 shrink-0" style="color: var(--accent-color);"></i><span>450 Glamour Ave<br>Style City, NY 10001</span></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-phone shrink-0" style="color: var(--accent-color);"></i><a href="tel:+1555800GLOW" class="break-all hover:text-[var(--accent-color)]">+1 (555) 800-GLOW</a></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-envelope shrink-0" style="color: var(--accent-color);"></i><a href="contact.html" class="break-all hover:text-[var(--accent-color)]">admissions@glowacademy.edu</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom flex flex-col md:flex-row justify-between items-center text-xs gap-6 font-semibold uppercase tracking-widest">
+                <p style="color: var(--text-muted);">&copy; 2026 Glow Academy of Beauty. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+                    <a href="#">Terms of Service</a><a href="#">Student Guidelines</a><a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- === JAVASCRIPT CORE === -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 20) { nav.classList.add('scrolled'); } else { nav.classList.remove('scrolled'); }
+        });
+
+        const mobileBtn = document.getElementById('mobile-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function toggleMenu() {
+            fullscreenMenu.classList.toggle('active');
+            drawerOverlay.classList.toggle('active');
+            document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+        mobileBtn.onclick = toggleMenu; closeMenu.onclick = toggleMenu; drawerOverlay.onclick = toggleMenu;
+
+        const themeDesktop = document.getElementById('theme-toggle-desktop');
+        const themeMobile = document.getElementById('theme-toggle-mobile');
+        const theme = localStorage.getItem('theme') || 'light';
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                if (themeMobile) themeMobile.classList.add('active');
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (themeMobile) themeMobile.classList.remove('active');
+            }
+        }
+        updateThemeUI(theme === 'dark');
+
+        function toggleTheme() {
+            const isDark = !document.body.classList.contains('dark-mode');
+            updateThemeUI(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+        themeDesktop.onclick = toggleTheme;
+        if (themeMobile) themeMobile.onclick = toggleTheme;
+
+        const rtlBtn = document.getElementById('rtl-btn');
+        const rtlMobile = document.getElementById('rtl-toggle-mobile');
+        const dir = localStorage.getItem('dir') || 'ltr';
+
+        function updateRTLUI(currentDir) {
+            const isRTL = currentDir === 'rtl';
+            if (rtlBtn) rtlBtn.innerText = isRTL ? 'RTL' : 'LTR';
+            if (rtlMobile) rtlMobile.innerText = isRTL ? 'RTL' : 'LTR';
+        }
+        if (dir === 'rtl') { document.documentElement.dir = 'rtl'; }
+        updateRTLUI(dir);
+
+        function toggleRTL() {
+            const isRTL = document.documentElement.dir === 'rtl';
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            localStorage.setItem('dir', newDir);
+            updateRTLUI(newDir);
+        }
+        if (rtlBtn) rtlBtn.onclick = toggleRTL;
+        if (rtlMobile) rtlMobile.onclick = toggleRTL;
+    </script>
+</body>
+</html>
