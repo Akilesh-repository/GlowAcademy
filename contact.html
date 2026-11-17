@@ -212,7 +212,7 @@
     <!-- === HAMBURGER MENU DRAWER === -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="fullscreen-menu" id="fullscreen-menu">
-        <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
+        <div class="w-full px-4 sm:px-8 py-5 sm:py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
             <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
                 <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
             </a>
@@ -231,7 +231,7 @@
             <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">Student Portal</a>
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
         </div>
-        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+        <div class="w-full px-4 sm:px-8 py-6 sm:py-8 border-t border-[var(--border-color)] flex flex-col gap-4 sm:gap-6 shrink-0 bg-[var(--bg-secondary)]">
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center gap-3">
                     <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
@@ -250,20 +250,20 @@
     </div>
 
     <!-- === FULL VIEWPORT HERO BANNER === -->
-    <section class="relative w-full h-[100dvh] flex items-center justify-center bg-black overflow-hidden pt-[86px]">
+    <section class="relative w-full min-h-[480px] sm:min-h-[550px] lg:h-[100dvh] flex items-center justify-center bg-black overflow-hidden pt-20 pb-12 lg:pt-[86px] lg:pb-0">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1920&q=80" alt="Contact Glow Academy" class="w-full h-full object-cover opacity-50">
             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-black/40 to-transparent"></div>
         </div>
         <div class="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[var(--accent-color)] text-white text-3xl mb-8 shadow-2xl animate-float">
+            <div class="inline-flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[var(--accent-color)] text-white text-2xl sm:text-3xl mb-4 sm:mb-8 shadow-2xl animate-float">
                 <i class="fas fa-paper-plane"></i>
             </div>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-xl leading-tight">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-6 tracking-tight drop-shadow-xl leading-tight">
                 Let's Connect. <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">Reach Out Today.</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 font-medium max-w-2xl mx-auto drop-shadow-md">
+            <p class="text-sm sm:text-base md:text-xl text-gray-200 font-medium max-w-2xl mx-auto drop-shadow-md">
                 Whether you're ready to enroll, need to schedule a campus tour, or have questions about financial aid, our admissions team is ready to assist you.
             </p>
         </div>
@@ -273,31 +273,31 @@
     </section>
 
     <!-- === SECTION 1: CONTACT INFO CARDS === -->
-    <section class="relative w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-14 sm:py-20 lg:py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center">
             <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Reach Out</span>
-            <h2 class="text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-12 tracking-tight">How Can We Help?</h2>
+            <h2 class="text-2xl sm:text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-8 sm:mb-12 tracking-tight">How Can We Help?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Card 1 -->
-                <div class="p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
+                <div class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-[var(--accent-color)] text-2xl mx-auto mb-6"><i class="fas fa-map-marker-alt"></i></div>
                     <h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Our Campus</h3>
                     <p class="text-[var(--text-muted)] text-sm">450 Glamour Ave<br>Style City, NY 10001</p>
                 </div>
                 <!-- Card 2 -->
-                <div class="p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
+                <div class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 text-2xl mx-auto mb-6"><i class="fas fa-phone-alt"></i></div>
                     <h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Phone</h3>
                     <p class="text-[var(--text-muted)] text-sm">+1 (555) 800-GLOW<br>+1 (555) 800-4569</p>
                 </div>
                 <!-- Card 3 -->
-                <div class="p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
+                <div class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 text-2xl mx-auto mb-6"><i class="fas fa-envelope"></i></div>
                     <h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Email</h3>
                     <p class="text-[var(--text-muted)] text-sm">info@glowacademy.edu<br>admissions@glowacademy.edu</p>
                 </div>
                 <!-- Card 4 -->
-                <div class="p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
+                <div class="p-6 sm:p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] text-center hover:-translate-y-2 transition-transform duration-300">
                     <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center text-green-600 text-2xl mx-auto mb-6"><i class="fas fa-clock"></i></div>
                     <h3 class="text-xl font-bold text-[var(--text-main)] mb-2">Hours</h3>
                     <p class="text-[var(--text-muted)] text-sm">Mon-Fri: 9am - 6pm<br>Sat: 10am - 4pm (Salon Only)</p>
@@ -307,11 +307,11 @@
     </section>
 
     <!-- === SECTION 2: DETAILED CONTACT FORM === -->
-    <section class="relative w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-14 sm:py-20 lg:py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
         <div class="max-w-[1440px] mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="bg-[var(--bg-card)] p-8 md:p-12 rounded-[2rem] border border-[var(--border-color)] shadow-xl relative overflow-hidden order-2 lg:order-1">
+            <div class="bg-[var(--bg-card)] p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-[2rem] border border-[var(--border-color)] shadow-xl relative overflow-hidden order-2 lg:order-1">
                 <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-pink-100 to-transparent rounded-bl-full opacity-50 pointer-events-none"></div>
-                <h3 class="text-3xl font-black text-[var(--text-main)] mb-2 relative z-10">Send a Message</h3>
+                <h3 class="text-2xl sm:text-3xl font-black text-[var(--text-main)] mb-2 relative z-10">Send a Message</h3>
                 <p class="text-[var(--text-muted)] text-sm mb-8 relative z-10">Our admissions team typically responds within 24 hours.</p>
                 <form action="#" class="relative z-10 space-y-5">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -329,7 +329,7 @@
                     <button type="submit" class="btn btn-solid w-full !py-4 shadow-lg">Submit Form <i class="fas fa-paper-plane ml-2"></i></button>
                 </form>
             </div>
-            <div class="h-[600px] rounded-[2rem] overflow-hidden shadow-2xl border border-[var(--border-color)] relative order-1 lg:order-2">
+            <div class="h-[300px] sm:h-[400px] lg:h-[600px] rounded-2xl sm:rounded-[2rem] overflow-hidden shadow-2xl border border-[var(--border-color)] relative order-1 lg:order-2">
                 <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=800&q=80" alt="Reception" class="w-full h-full object-cover">
                 <div class="absolute inset-0 bg-black/20"></div>
             </div>
@@ -337,12 +337,12 @@
     </section>
 
     <!-- === SECTION 3: INTERACTIVE MAP & DIRECTIONS === -->
-    <section class="relative w-full h-[600px] bg-gray-200 dark:bg-gray-800 border-b border-[var(--border-color)] overflow-hidden flex items-center">
+    <section class="relative w-full min-h-[500px] lg:h-[600px] py-8 lg:py-0 bg-gray-200 dark:bg-gray-800 border-b border-[var(--border-color)] overflow-hidden flex items-center">
         <!-- Mock Map Iframe -->
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2570381665476!2d-73.98773128459423!3d40.75628677932717!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1684343187895!5m2!1sen!2sus" class="absolute inset-0 w-full h-full object-cover border-0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <div class="absolute inset-0 bg-black/30 pointer-events-none"></div>
         <div class="relative z-10 max-w-[1440px] mx-auto px-6 w-full flex justify-end">
-            <div class="bg-[var(--bg-card)] p-8 rounded-3xl shadow-2xl border border-[var(--border-color)] max-w-sm w-full backdrop-blur-md bg-opacity-95 dark:bg-opacity-95 text-left pointer-events-auto">
+            <div class="bg-[var(--bg-card)] p-5 sm:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-[var(--border-color)] max-w-sm w-full backdrop-blur-md bg-opacity-95 dark:bg-opacity-95 text-left pointer-events-auto">
                 <h3 class="text-2xl font-black text-[var(--text-main)] mb-4">Find Us</h3>
                 <p class="text-[var(--text-muted)] text-sm mb-6 font-medium">Located in the heart of Style City, just two blocks from the main transit hub.</p>
                 <div class="space-y-4 mb-6">
@@ -355,10 +355,10 @@
     </section>
 
     <!-- === SECTION 4: DEPARTMENT DIRECTORY === -->
-    <section class="relative w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-14 sm:py-20 lg:py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
         <div class="max-w-[1000px] mx-auto px-6 w-full text-center">
             <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Direct Contacts</span>
-            <h2 class="text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-12 tracking-tight">Department Directory</h2>
+            <h2 class="text-2xl sm:text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-8 sm:mb-12 tracking-tight">Department Directory</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                 <!-- Dept 1 -->
                 <div class="p-6 bg-[var(--bg-secondary)] rounded-2xl border border-[var(--border-color)] flex items-center justify-between hover:border-[var(--accent-color)] transition-colors">
@@ -397,11 +397,11 @@
     </section>
 
     <!-- === SECTION 5: SOCIAL CONNECT === -->
-    <section class="relative w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)] overflow-hidden">
+    <section class="relative w-full py-14 sm:py-20 lg:py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)] overflow-hidden">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center relative z-10">
-            <i class="fab fa-instagram text-5xl text-[var(--accent-color)] mb-6 drop-shadow-sm"></i>
-            <h2 class="text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-6 tracking-tight">Follow Our Journey</h2>
-            <p class="text-lg text-[var(--text-muted)] mb-12 font-medium max-w-2xl mx-auto">Tag @GlowAcademy in your transformations to be featured on our student spotlight!</p>
+            <i class="fab fa-instagram text-4xl sm:text-5xl text-[var(--accent-color)] mb-4 sm:mb-6 drop-shadow-sm"></i>
+            <h2 class="text-2xl sm:text-3xl lg:text-5xl font-black text-[var(--text-main)] mb-4 sm:mb-6 tracking-tight">Follow Our Journey</h2>
+            <p class="text-sm sm:text-base md:text-lg text-[var(--text-muted)] mb-8 sm:mb-12 font-medium max-w-2xl mx-auto">Tag @GlowAcademy in your transformations to be featured on our student spotlight!</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
                 <div class="aspect-square rounded-2xl overflow-hidden relative group">
                     <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80" alt="Hair Styling Transformation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">

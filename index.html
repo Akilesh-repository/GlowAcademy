@@ -212,7 +212,7 @@
     <!-- === HAMBURGER MENU DRAWER === -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="fullscreen-menu" id="fullscreen-menu">
-        <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
+        <div class="w-full px-4 sm:px-8 py-5 sm:py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
             <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
                 <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
             </a>
@@ -231,7 +231,7 @@
             <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">Student Portal</a>
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
         </div>
-        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+        <div class="w-full px-4 sm:px-8 py-6 sm:py-8 border-t border-[var(--border-color)] flex flex-col gap-4 sm:gap-6 shrink-0 bg-[var(--bg-secondary)]">
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center gap-3">
                     <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
@@ -250,26 +250,26 @@
     </div>
 
     <!-- === VIEWPORT FITTED 50/50 SPLIT EDITORIAL HERO === -->
-    <section class="relative w-full h-[100dvh] flex flex-col lg:flex-row overflow-hidden bg-[var(--bg-color)]">
+    <section class="relative w-full min-h-[100dvh] lg:h-[100dvh] flex flex-col lg:flex-row overflow-hidden bg-[var(--bg-color)]">
         <!-- Left Text Content -->
-        <div class="w-full lg:w-1/2 h-[60%] lg:h-full flex flex-col justify-center px-6 sm:px-12 lg:px-20 xl:px-28 z-10 pt-[86px] lg:pt-0 order-1 overflow-y-auto lg:overflow-visible">
-            <div class="inline-flex items-center gap-3 mb-6 lg:mb-8">
+        <div class="w-full lg:w-1/2 min-h-[55dvh] lg:h-full flex flex-col justify-center px-5 sm:px-12 lg:px-20 xl:px-28 z-10 pt-24 pb-8 lg:pt-0 lg:pb-0 order-1">
+            <div class="inline-flex items-center gap-3 mb-4 sm:mb-6 lg:mb-8">
                 <span class="w-12 h-[2px] bg-[var(--accent-color)]"></span>
                 <span class="text-xs font-bold uppercase tracking-widest text-[var(--accent-color)]">Fall 2026 Admissions</span>
             </div>
-            <h1 class="text-5xl sm:text-6xl xl:text-[5rem] font-black leading-[1.05] mb-6 text-[var(--text-main)] tracking-tighter">
+            <h1 class="text-3xl sm:text-5xl xl:text-[5rem] font-black leading-[1.1] sm:leading-[1.05] mb-4 sm:mb-6 text-[var(--text-main)] tracking-tighter">
                 Where Passion <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-color)] to-purple-500">Meets Canvas.</span>
             </h1>
-            <p class="text-[var(--text-muted)] text-base sm:text-lg leading-relaxed font-medium mb-10 max-w-md">
+            <p class="text-[var(--text-muted)] text-sm sm:text-base lg:text-lg leading-relaxed font-medium mb-6 sm:mb-10 max-w-md">
                 Master the art of cosmetology, esthetics, and nail technology. Transform your creativity into a thriving career with our industry-leading educators and award-winning curriculum.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                <a href="contact.html" class="btn btn-solid !py-4 !px-8 text-sm shadow-lg w-full sm:w-auto text-center"><i class="fas fa-sparkles mr-2"></i> Apply Today</a>
-                <a href="services.html" class="btn btn-outline !py-4 !px-8 text-sm w-full sm:w-auto text-center"><i class="fas fa-book-open mr-2 text-[var(--accent-color)]"></i> Explore Courses</a>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto">
+                <a href="contact.html" class="btn btn-solid !py-3.5 sm:!py-4 !px-6 sm:!px-8 text-sm shadow-lg w-full sm:w-auto text-center"><i class="fas fa-sparkles mr-2"></i> Apply Today</a>
+                <a href="services.html" class="btn btn-outline !py-3.5 sm:!py-4 !px-6 sm:!px-8 text-sm w-full sm:w-auto text-center"><i class="fas fa-book-open mr-2 text-[var(--accent-color)]"></i> Explore Courses</a>
             </div>
         </div>
         <!-- Right Full Bleed Image -->
-        <div class="w-full lg:w-1/2 h-[40%] lg:h-full relative overflow-hidden order-2">
+        <div class="w-full lg:w-1/2 h-[45dvh] min-h-[260px] lg:h-full relative overflow-hidden order-2">
             <div class="absolute inset-0 bg-black/5 dark:bg-black/40 z-10"></div> 
             <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=1200&q=80" alt="Cosmetology Student Training" class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-[1.5s] ease-out">
             <div class="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 lg:bottom-12 lg:right-12 z-20 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 pr-5 sm:pr-6 rounded-2xl shadow-2xl border border-[var(--border-color)] animate-float backdrop-blur-xl" style="background: var(--bg-card);">
@@ -287,7 +287,7 @@
     </section>
 
     <!-- SECTION 1: THE GLOW PHILOSOPHY (ABOUT) -->
-    <section class="relative w-full h-[100dvh] min-h-[600px] flex items-center justify-center bg-[var(--bg-card)] border-b border-[var(--border-color)] overflow-hidden">
+    <section class="relative w-full py-16 lg:py-0 lg:h-[100dvh] lg:min-h-[600px] flex items-center justify-center bg-[var(--bg-card)] border-b border-[var(--border-color)] overflow-hidden">
         <div class="max-w-[1440px] mx-auto px-6 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div class="relative w-full h-[40vh] md:h-[60vh] rounded-3xl overflow-hidden shadow-xl border border-[var(--border-color)] group">
                 <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=800&q=80" alt="Beauty Philosophy" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
@@ -296,7 +296,7 @@
             </div>
             <div class="flex flex-col justify-center">
                 <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-4">Who We Are</span>
-                <h2 class="text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-6 leading-tight">Elevating The Art <br>Of Aesthetics.</h2>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-6 leading-tight">Elevating The Art <br>Of Aesthetics.</h2>
                 <p class="text-[var(--text-muted)] text-base lg:text-lg mb-8 leading-relaxed">At Glow Academy, we believe beauty is more than skin deep. It's an empowering combination of science, art, and personal expression. Our rigorous programs prepare students not just to pass state boards, but to become industry innovators and leaders in top-tier salons and spas worldwide.</p>
                 <div class="flex items-center gap-6 mb-8">
                     <div class="flex flex-col"><span class="text-3xl font-black text-[var(--accent-color)]">25+</span><span class="text-xs text-[var(--text-muted)] uppercase font-bold tracking-wider">Years Experience</span></div>
@@ -309,10 +309,10 @@
     </section>
 
     <!-- SECTION 2: ELITE PROGRAMS GRID -->
-    <section class="relative w-full h-[100dvh] min-h-[700px] flex flex-col justify-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-16 lg:py-0 lg:h-[100dvh] lg:min-h-[700px] flex flex-col justify-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center">
             <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Our Curriculum</span>
-            <h2 class="text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-12 tracking-tight">Choose Your Specialization</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-8 sm:mb-12 tracking-tight">Choose Your Specialization</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-[var(--bg-card)] p-8 rounded-3xl border border-[var(--border-color)] shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all text-left group">
                     <div class="w-16 h-16 rounded-2xl bg-pink-100 dark:bg-pink-900/30 flex items-center justify-center text-[var(--accent-color)] text-2xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-cut"></i></div>
@@ -343,10 +343,10 @@
     </section>
 
     <!-- SECTION 3: STUDENT MASTERPIECES (GALLERY) -->
-    <section class="relative w-full h-[100dvh] min-h-[600px] flex flex-col justify-center bg-black overflow-hidden border-b border-gray-900">
+    <section class="relative w-full py-16 lg:py-0 lg:h-[100dvh] lg:min-h-[600px] flex flex-col justify-center bg-black overflow-hidden border-b border-gray-900">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center relative z-10">
             <span class="text-pink-500 text-xs font-bold uppercase tracking-widest mb-2 block">Student Portfolio</span>
-            <h2 class="text-4xl lg:text-5xl font-black text-white mb-10 tracking-tight">Art In Motion</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-8 sm:mb-10 tracking-tight">Art In Motion</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 h-[40vh] md:h-[50vh]">
                 <div class="rounded-2xl overflow-hidden relative group">
                     <img src="https://images.unsplash.com/photo-1560869713-7d0a29430803?auto=format&fit=crop&w=600&q=80" alt="Hair Styling Work" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
@@ -371,10 +371,10 @@
     </section>
 
     <!-- SECTION 4: WHY CHOOSE US (STATS) -->
-    <section class="relative w-full h-[100dvh] min-h-[600px] flex items-center justify-center bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-16 lg:py-0 lg:h-[100dvh] lg:min-h-[600px] flex items-center justify-center bg-[var(--bg-color)] border-b border-[var(--border-color)]">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center">
             <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-4 block">The Glow Advantage</span>
-            <h2 class="text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-16 tracking-tight">By The Numbers</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-10 sm:mb-16 tracking-tight">By The Numbers</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
                 <div class="flex flex-col items-center p-6 bg-[var(--bg-secondary)] rounded-3xl border border-[var(--border-color)] hover:shadow-lg transition-shadow">
                     <i class="fas fa-check-circle text-4xl text-green-500 mb-4"></i>
@@ -401,10 +401,10 @@
     </section>
 
     <!-- SECTION 5: MEET THE MASTERS (TEAM) -->
-    <section class="relative w-full h-[100dvh] min-h-[700px] flex flex-col justify-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-16 lg:py-0 lg:h-[100dvh] lg:min-h-[700px] flex flex-col justify-center bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center">
             <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Our Faculty</span>
-            <h2 class="text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-12 tracking-tight">Learn From The Best</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-8 sm:mb-12 tracking-tight">Learn From The Best</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-[var(--bg-card)] rounded-3xl border border-[var(--border-color)] shadow-sm overflow-hidden group hover:shadow-xl transition-all">
                     <div class="h-64 overflow-hidden relative">
@@ -444,10 +444,10 @@
     </section>
 
     <!-- SECTION 6: ALUMNI VOICES (TESTIMONIALS) -->
-    <section class="relative w-full h-[100dvh] min-h-[600px] flex flex-col justify-center bg-[var(--bg-card)] border-b border-[var(--border-color)]">
+    <section class="relative w-full py-16 lg:py-0 lg:h-[100dvh] lg:min-h-[600px] flex flex-col justify-center bg-[var(--bg-card)] border-b border-[var(--border-color)]">
         <div class="max-w-[1440px] mx-auto px-6 w-full text-center">
             <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-2 block">Success Stories</span>
-            <h2 class="text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-12 tracking-tight">Hear From Our Alumni</h2>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-[var(--text-main)] mb-8 sm:mb-12 tracking-tight">Hear From Our Alumni</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="p-8 rounded-3xl bg-[var(--bg-secondary)] border border-[var(--border-color)] relative">
                     <i class="fas fa-quote-left text-4xl text-[var(--border-color)] absolute top-6 left-6"></i>

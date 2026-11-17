@@ -235,7 +235,7 @@
     <!-- === HAMBURGER MENU DRAWER === -->
     <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="fullscreen-menu" id="fullscreen-menu">
-        <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
+        <div class="w-full px-4 sm:px-8 py-5 sm:py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
             <a href="index.html" class="inline-flex items-center gap-2 text-xl font-black tracking-widest whitespace-nowrap uppercase" style="color: var(--text-main) !important; text-decoration: none;">
                 <i class="fas fa-spa" style="color: var(--accent-color);"></i> Glow Academy
             </a>
@@ -254,7 +254,7 @@
             <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">Student Portal</a>
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
         </div>
-        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+        <div class="w-full px-4 sm:px-8 py-6 sm:py-8 border-t border-[var(--border-color)] flex flex-col gap-4 sm:gap-6 shrink-0 bg-[var(--bg-secondary)]">
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center gap-3">
                     <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
@@ -273,20 +273,20 @@
     </div>
 
     <!-- === FULL VIEWPORT HERO BANNER === -->
-    <section class="relative w-full h-[100dvh] flex items-center justify-center bg-black overflow-hidden pt-[86px]">
+    <section class="relative w-full min-h-[480px] sm:min-h-[550px] lg:h-[100dvh] flex items-center justify-center bg-black overflow-hidden pt-20 pb-12 lg:pt-[86px] lg:pb-0">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1920&q=80" alt="Frequently Asked Questions" class="w-full h-full object-cover opacity-40">
             <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)] via-black/50 to-transparent"></div>
         </div>
         <div class="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center">
-            <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[var(--accent-color)] text-white text-3xl mb-8 shadow-2xl animate-float">
+            <div class="inline-flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-[var(--accent-color)] text-white text-2xl sm:text-3xl mb-4 sm:mb-8 shadow-2xl animate-float">
                 <i class="fas fa-question"></i>
             </div>
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-xl leading-tight">
+            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white mb-4 sm:mb-6 tracking-tight drop-shadow-xl leading-tight">
                 Got Questions? <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-purple-400">We Have Answers.</span>
             </h1>
-            <p class="text-lg md:text-xl text-gray-200 font-medium max-w-2xl mx-auto drop-shadow-md">
+            <p class="text-sm sm:text-base md:text-xl text-gray-200 font-medium max-w-2xl mx-auto drop-shadow-md">
                 Find all the details regarding admissions, financial aid, state board requirements, and campus life at Glow Academy.
             </p>
         </div>

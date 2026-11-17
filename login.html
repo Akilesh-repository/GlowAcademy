@@ -610,12 +610,15 @@
         /* RESPONSIVENESS */
         @media (max-width: 480px), (max-height: 640px) {
             html, body { height: auto !important; min-height: 100vh !important; overflow-y: auto !important; }
-            .top-bar { padding: 1rem 1rem; position: relative; }
-            .main-wrapper { padding: 0.5rem 1rem 1.5rem 1rem; height: auto; }
-            .login-container { max-width: 100%; padding: 1.25rem 1.15rem; }
+            .top-bar { padding: 0.75rem 0.75rem; position: relative; }
+            .main-wrapper { padding: 0.5rem 0.5rem 1.5rem 0.5rem; height: auto; }
+            .login-container { max-width: 100%; padding: 1.15rem 0.85rem; }
             .auth-header p { display: none; }
             .auth-trust-footer { flex-direction: column; gap: 4px; border: none; padding: 4px; background: transparent; }
             .trust-dot { display: none; }
+        }
+        @media (min-width: 400px) and (max-width: 480px) {
+            .login-container { padding: 1.25rem 1.15rem; }
         }
     </style>
 </head>
